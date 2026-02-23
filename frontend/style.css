@@ -13,6 +13,202 @@ body {
     color: white;
     font-size: 40px;
     animation: fadeIn 1s ease-in-out;
+}/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #667eea, #764ba2, #ff758c, #42e695);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Animated Background */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    font-size: 38px;
+    color: white;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    animation: float 3s ease-in-out infinite;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* =========================
+   NOTE FORM
+========================= */
+
+.note-form {
+    width: 100%;
+    max-width: 600px;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.2);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    margin-bottom: 40px;
+    animation: slideUp 0.8s ease;
+}
+
+/* Slide animation */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.note-form input,
+.note-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+.note-form input:focus,
+.note-form textarea:focus {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(255,255,255,0.7);
+}
+
+.note-form textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+/* Button Styling */
+.note-form button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.note-form button:hover {
+    transform: scale(1.05);
+    background: #f3f3f3;
+}
+
+/* =========================
+   NOTES CONTAINER
+========================= */
+
+.notes-container {
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* =========================
+   NOTE CARD DESIGN
+========================= */
+
+.notes-container div {
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card hover animation */
+.notes-container div:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 25px 40px rgba(0,0,0,0.3);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Title inside card */
+.notes-container h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Body text */
+.notes-container p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Delete Button if exists */
+.notes-container button {
+    margin-top: 15px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background: #ff4b5c;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.notes-container button:hover {
+    background: #ff1e38;
+    transform: scale(1.1);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 28px;
+    }
+
+    .note-form {
+        padding: 20px;
+    }
+
+    .notes-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
 }
 
 /* Form */
