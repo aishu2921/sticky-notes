@@ -1,19 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-/* Title */
-.logo {
-    text-align: center;
-    color: white;
-    font-size: 40px;
-    animation: fadeIn 1s ease-in-out;
-}/* =========================
+/* =========================
    GLOBAL STYLES
 ========================= */
 
@@ -36,7 +21,7 @@ body {
     padding: 40px 20px;
 }
 
-/* Animated Background */
+/* Animated background */
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -133,33 +118,69 @@ body {
     max-width: 1000px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
+    gap: 30px;
 }
 
 /* =========================
-   NOTE CARD DESIGN
+   STICKY NOTE CARDS
 ========================= */
 
 .notes-container div {
-    background: rgba(255,255,255,0.9);
     padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    animation: fadeIn 0.5s ease;
+    border-radius: 20px 5px 25px 10px;
+    box-shadow: 5px 8px 20px rgba(0,0,0,0.25);
     position: relative;
-    overflow: hidden;
+    transition: all 0.4s ease;
+    animation: fadeIn 0.5s ease;
 }
 
-/* Card hover animation */
+/* Different Colors */
+.notes-container div:nth-child(6n+1) { background: #fff9a9; }
+.notes-container div:nth-child(6n+2) { background: #ffd6e8; }
+.notes-container div:nth-child(6n+3) { background: #c8f7c5; }
+.notes-container div:nth-child(6n+4) { background: #d0e6ff; }
+.notes-container div:nth-child(6n+5) { background: #ffe0b2; }
+.notes-container div:nth-child(6n+6) { background: #e0c3fc; }
+
+/* Rotation effect */
+.notes-container div:nth-child(odd) {
+    transform: rotate(2deg);
+}
+.notes-container div:nth-child(even) {
+    transform: rotate(-3deg);
+}
+
+/* Hover animation */
 .notes-container div:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 25px 40px rgba(0,0,0,0.3);
+    transform: rotate(0deg) scale(1.08);
+    z-index: 10;
+    box-shadow: 10px 20px 35px rgba(0,0,0,0.35);
 }
 
-/* Fade animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Tape effect */
+.notes-container div::before {
+    content: "";
+    width: 60px;
+    height: 20px;
+    background: rgba(255,255,255,0.6);
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Folded corner */
+.notes-container div::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-top: 25px solid rgba(0,0,0,0.1);
 }
 
 /* Title inside card */
@@ -172,11 +193,11 @@ body {
 /* Body text */
 .notes-container p {
     font-size: 14px;
-    color: #555;
+    color: #444;
     line-height: 1.6;
 }
 
-/* Delete Button if exists */
+/* Delete Button */
 .notes-container button {
     margin-top: 15px;
     padding: 6px 10px;
@@ -191,6 +212,12 @@ body {
 .notes-container button:hover {
     background: #ff1e38;
     transform: scale(1.1);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================
@@ -208,153 +235,5 @@ body {
 
     .notes-container {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-}
-
-/* Form */
-.note-form {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    width: 400px;
-    max-width: 95%;
-    margin: 20px auto;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    animation: slideDown 0.6s ease;
-}
-
-.note-form input,
-.note-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    transition: 0.3s;
-    box-sizing: border-box;
-}
-
-.note-form textarea {
-    resize: none;
-    min-height: 80px;
-}
-
-.note-form input:focus,
-.note-form textarea:focus {
-    border-color: #764ba2;
-    transform: scale(1.03);
-}
-
-.note-form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: #764ba2;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.note-form button:hover {
-    background: #5a3f8f;
-    transform: scale(1.05);
-}
-
-/* Notes Container */
-.notes-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-/* Note Card */
-.note-card {
-    background: white;
-    width: 280px;
-    max-width: 95%;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-    transition: 0.4s;
-    animation: fadeIn 0.5s ease;
-
-    /* FIX FOR OVERFLOW */
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    display: flex;
-    flex-direction: column;
-}
-
-.note-card:hover {
-    transform: translateY(-8px) scale(1.03);
-}
-
-/* Title */
-.note-card h3 {
-    margin: 0;
-    color: #333;
-}
-
-/* Body Text */
-.note-card p {
-    color: #555;
-    margin-top: 10px;
-
-    /* IMPORTANT FIX */
-    word-break: break-word;
-    white-space: pre-wrap;
-
-    /* Scroll if content too long */
-    max-height: 120px;
-    overflow-y: auto;
-}
-
-/* Buttons */
-.note-card button {
-    margin-top: 10px;
-    margin-right: 5px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.edit-btn {
-    background: orange;
-    color: white;
-}
-
-.delete-btn {
-    background: red;
-    color: white;
-}
-
-.note-card button:hover {
-    transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes slideDown {
-    from {transform: translateY(-30px); opacity: 0;}
-    to {transform: translateY(0); opacity: 1;}
-}
-
-/* Responsive */
-@media (max-width: 500px) {
-    .note-form {
-        width: 100%;
-    }
-
-    .note-card {
-        width: 100%;
     }
 }
