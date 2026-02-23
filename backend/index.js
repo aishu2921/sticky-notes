@@ -9,7 +9,9 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB Connection
-mongoose.connect("mongodb://localhost:27017/notesapp")
+mongoose.connect("mongodb+srv://aiswarya:aishu2005cluster0.dw7rdin.mongodb.net/notesapp?appName=Cluster0")
+
+//mongoose.connect("mongodb://localhost:27017/notesapp")
     .then(() => console.log("✅ MongoDB Connected"))
     .catch(err => console.log(err));
 
@@ -45,5 +47,8 @@ app.delete("/notes/:id", async (req, res) => {
     await Note.findByIdAndDelete(req.params.id);
     res.json({ message: "Note deleted" });
 });
-
-app.listen(3000, () => console.log("🚀 Server running on port 3000"));
+const PORT = process.env.PORT||3000;
+app.listen(3000, () => {
+    console.log("✅ Server running on http://localhost:3000");
+});
+//app.listen(3000, () => console.log("🚀 Server running on port 3000"));
