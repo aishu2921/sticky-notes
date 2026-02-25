@@ -1,0 +1,239 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #667eea, #764ba2, #ff758c, #42e695);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Animated background */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    font-size: 38px;
+    color: white;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    animation: float 3s ease-in-out infinite;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* =========================
+   NOTE FORM
+========================= */
+
+.note-form {
+    width: 100%;
+    max-width: 600px;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.2);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    margin-bottom: 40px;
+    animation: slideUp 0.8s ease;
+}
+
+/* Slide animation */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.note-form input,
+.note-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+.note-form input:focus,
+.note-form textarea:focus {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(255,255,255,0.7);
+}
+
+.note-form textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+/* Button Styling */
+.note-form button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.note-form button:hover {
+    transform: scale(1.05);
+    background: #f3f3f3;
+}
+
+/* =========================
+   NOTES CONTAINER
+========================= */
+
+.notes-container {
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* =========================
+   STICKY NOTE CARDS
+========================= */
+
+.notes-container div {
+    padding: 20px;
+    border-radius: 20px 5px 25px 10px;
+    box-shadow: 5px 8px 20px rgba(0,0,0,0.25);
+    position: relative;
+    transition: all 0.4s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Different Colors */
+.notes-container div:nth-child(6n+1) { background: #fff9a9; }
+.notes-container div:nth-child(6n+2) { background: #ffd6e8; }
+.notes-container div:nth-child(6n+3) { background: #c8f7c5; }
+.notes-container div:nth-child(6n+4) { background: #d0e6ff; }
+.notes-container div:nth-child(6n+5) { background: #ffe0b2; }
+.notes-container div:nth-child(6n+6) { background: #e0c3fc; }
+
+/* Rotation effect */
+.notes-container div:nth-child(odd) {
+    transform: rotate(2deg);
+}
+.notes-container div:nth-child(even) {
+    transform: rotate(-3deg);
+}
+
+/* Hover animation */
+.notes-container div:hover {
+    transform: rotate(0deg) scale(1.08);
+    z-index: 10;
+    box-shadow: 10px 20px 35px rgba(0,0,0,0.35);
+}
+
+/* Tape effect */
+.notes-container div::before {
+    content: "";
+    width: 60px;
+    height: 20px;
+    background: rgba(255,255,255,0.6);
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Folded corner */
+.notes-container div::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-top: 25px solid rgba(0,0,0,0.1);
+}
+
+/* Title inside card */
+.notes-container h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Body text */
+.notes-container p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* Delete Button */
+.notes-container button {
+    margin-top: 15px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background: #ff4b5c;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.notes-container button:hover {
+    background: #ff1e38;
+    transform: scale(1.1);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 28px;
+    }
+
+    .note-form {
+        padding: 20px;
+    }
+
+    .notes-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
